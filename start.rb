@@ -102,8 +102,8 @@ module Service
       super
       self.class.fire_and_forget(executable,
                                  "--SocksPort #{port}",
-                                 "--ExitNodes {us}",
-                                 "--StrictNodes 1",
+                                 "--AvoidDiskWrites 1",
+                                 "--HardwareAccel 1",
                                  "--NewCircuitPeriod #{new_circuit_period}",
                                  "--MaxCircuitDirtiness #{max_circuit_dirtiness}",
                                  "--CircuitBuildTimeout #{circuit_build_timeout}",
