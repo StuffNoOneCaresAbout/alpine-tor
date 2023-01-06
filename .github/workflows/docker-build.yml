@@ -1,7 +1,9 @@
 name: Docker Multi-Architecture Build
 
 on:
-  push: {}
+  push:
+    branches:
+      - "master"
 
 jobs:
   build-docker:
