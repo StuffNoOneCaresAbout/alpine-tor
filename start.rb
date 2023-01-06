@@ -57,6 +57,7 @@ module Service
 
     def self.kill(pid, signal='SIGINT')
       Process.kill(signal, pid)
+      Process.waitpid(pid)
     end
 
     def self.fire_and_forget(*args)
@@ -147,7 +148,7 @@ module Service
     alias_method :port, :tor_port
 
     def test_url
-      ENV['test_url'] || 'http://google.com'
+      ENV['test_url'] || 'http://1.1.1.1'
     end
 
     def test_status
@@ -259,8 +260,9 @@ loop do
   proxies.each do |proxy|
     $logger.info "testing proxy #{proxy.id} (port #{proxy.port})"
     proxy.restart unless proxy.working?
-    $logger.info "sleeping for #{tor_instances} seconds"
-    sleep Integer(tor_instances)
+    time = [5, tor_instances.to_i].min
+    $logger.info "sleeping for #{time} seconds"
+    sleep time
   end
 
   $logger.info "sleeping for 60 seconds"
