@@ -2,6 +2,7 @@ global
   daemon
   user root
   group root
+  fd-hard-limit 1024
   pidfile <%= pid_file %>
 
 defaults
