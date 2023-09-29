@@ -16,6 +16,6 @@ ADD start.rb /usr/local/bin/start.rb
 
 EXPOSE 2090 8118 5566
 
-ENTRYPOINT ["/tini", "--"]
+ENTRYPOINT ["/sbin/tini", "--"]
 
 CMD ruby /usr/local/bin/start.rb
